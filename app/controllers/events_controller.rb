@@ -13,7 +13,7 @@ class EventsController < ApplicationController
       end
     end
     @events = Event.all
-    @ending_tomorrow = Event.where('end BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
+    @ending_tomorrow = Event.ends_today.all
 
     respond_to do |format|
       format.html
