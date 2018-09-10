@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-start_datetime = DateTime.new(2018, 9, 4, 0, 0, 0)
+start_datetime = DateTime.new(2018, 9, 4, 17, 0, 0)
 for i in 1..100
   @strikes = Event.create({title: 'Vanguard Daily', start: start_datetime, end: start_datetime+4.days, color: '#f36621', allDay: true, order: 1})
   @gambit = Event.create({title: 'Gambit Daily', start: start_datetime+1.day, end: start_datetime+5.days, color: '#0b7b4d', allDay: true, order: 2})
@@ -15,9 +15,9 @@ for i in 1..100
   start_datetime = start_datetime + 4.days
 end
 
-start_datetime = DateTime.new(2018, 9, 4, 0, 0, 0)
+start_datetime = DateTime.new(2018, 9, 4, 17, 0, 0)
 for i in 1..100
-  @weeklies = Event.create({title: 'Weekly Reset', start: start_datetime, end: start_datetime+7.days, color: '', allDay: true, order: 0})
+  @weeklies = Event.create({title: 'Weekly Reset', start: start_datetime, end: start_datetime+7.days, color: '#4386b1', allDay: true, order: 0})
   start_datetime = start_datetime + 7.days
 end
 
