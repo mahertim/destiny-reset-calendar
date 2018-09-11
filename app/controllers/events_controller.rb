@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     end
     @events = Event.all
     @ending_next = Event.ends_next.all
-    @next_reset_hours = ((Event.ends_next.first.end - DateTime.now) / 60 / 60).to_i
+    @next_reset = @ending_next.first.end
 
     respond_to do |format|
       format.html
