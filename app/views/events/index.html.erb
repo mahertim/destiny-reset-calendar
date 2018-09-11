@@ -1,16 +1,28 @@
 <h1>Destiny 2 Powerful Engram Reset Calendar</h1>
 
-<% if @ending_next.where(title: "Weekly Reset").count != 0 %>
-  <div class="weekly_alert">Weekly engrams reset in <%= distance_of_time_in_words(DateTime.now, @next_reset) %>, hurry up Guardian.</div>
-<% end %>
-
 <br>
 
-<% @ending_next.each do |event| %>
-  <% unless event.title == "Weekly Reset" %>
-    <div class="daily_alert">The <%= event.title %> is resetting in <%= distance_of_time_in_words(DateTime.now, @next_reset) %>, better finish fast.</div>
-  <% end %>
-<% end %>
+<div class="daily_alert">
+  <div class="grid-container-long">
+    <div class="weekly grid-item">
+      Weekly Reset occurs in <%= distance_of_time_in_words(DateTime.now, Event.next("Weekly Reset").start) %>.
+    </div>
+  </div>
+  <div class="grid-container">
+    <div class="vangaurd grid-item">
+      Vanguard Daily Reset occurs in <%= distance_of_time_in_words(DateTime.now, Event.next("Vanguard Daily").start) %>.
+    </div>
+    <div class="gambit grid-item">
+      Gambit Daily Reset occurs in <%= distance_of_time_in_words(DateTime.now, Event.next("Gambit Daily").start) %>.
+    </div>
+    <div class="crucible grid-item">
+      Crucible Daily Reset occurs in <%= distance_of_time_in_words(DateTime.now, Event.next("Crucible Daily").start) %>.
+    </div>
+    <div class="heroic grid-item">
+      Daily Heroic Adventure reset occurs in <%= distance_of_time_in_words(DateTime.now, Event.next("Daily Heroic Adventure").start) %>.
+    </div>
+  </div>
+</div>
 
 <div id="calendar"></div>
 
