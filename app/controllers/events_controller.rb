@@ -13,7 +13,8 @@ class EventsController < ApplicationController
       end
     end
     @events = Event.all
-    @ending_tomorrow = Event.ends_today.all
+    @ending_next = Event.ends_next.all
+    @next_reset_hours = ((Event.ends_next.first.end - DateTime.now) / 60 / 60).to_i
 
     respond_to do |format|
       format.html

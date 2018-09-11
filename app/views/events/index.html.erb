@@ -1,15 +1,34 @@
 <h1>Destiny 2 Powerful Engram Reset Calendar</h1>
 
-<% if @ending_tomorrow.where(title: "Weekly Reset").count != 0 %>
+<% if @ending_next.where(title: "Weekly Reset").count != 0 %>
   <div class="weekly_alert">Weekly engrams reset tomorrow, hurry up Guardian.</div>
 <% end %>
 
 <br>
 
-<% @ending_tomorrow.each do |event| %>
+<% @ending_next.each do |event| %>
   <% unless event.title == "Weekly Reset" %>
     <div class="daily_alert">The <%= event.title %> is resetting tomorrow, better finish fast.</div>
   <% end %>
 <% end %>
 
 <div id="calendar"></div>
+
+<br>
+
+<div class="weekly_explain">
+  <h2>Items Included in the Weekly Reset:<h2>
+  <ul>
+    <li>Spider's largest bounty mission</li>
+    <li>Raid</li>
+    <li>Weekly Crucible</li>
+    <li>Weekly Gabmit</li>
+    <li>Nightfall</li>
+    <li>Nightfall High Score</li>
+    <li>Clan XP</li>
+    <li>Petra's Weekly Bounties</li>
+    <li>Flashpoints</li>
+    <li>Weekly Story Playlist</li>
+    <li>Weekly Strikes</li>
+  </ul>
+</div>
