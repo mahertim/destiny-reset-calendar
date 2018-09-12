@@ -4,17 +4,51 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    Event.all.each do |event|
-      if event.end < DateTime.now
-        event.color = '#9e9e9e'
+    Event.past.each do |event|
+      event.color = '#9e9e9e'
+      event.save!
+    end
+    Event.current.each do |event|
+      case event.title
+      when "Weekly Reset"
+        event.color = '#3a87ad'
         event.save!
-      else
-        break
+      when "Vanguard Daily"
+        event.color = '#f36621'
+        event.save!
+      when "Gambit Daily"
+        event.color = '#0b7b4d'
+        event.save!
+      when "Crucible Daily"
+        event.color = '#c62b29'
+        event.save!
+      when "Daily Heroic Adventure"
+        event.color = '#232b57'
+        event.save!
+      end
+    end
+    Event.upcoming.each do |event|
+      case event.title
+      when "Weekly Reset"
+        event.color = '#7194a5'
+        event.save!
+      when "Vanguard Daily"
+        event.color = '#ec976e'
+        event.save!
+      when "Gambit Daily"
+        event.color = '#466d5d'
+        event.save!
+      when "Crucible Daily"
+        event.color = '#c15d5b'
+        event.save!
+      when "Daily Heroic Adventure"
+        event.color = '#383b4f'
+        event.save!
       end
     end
     @events = Event.all
     @ending_next = Event.ends_next.all
-    @next_reset = @ending_next.first.end
+    @next_reset = Event.next_event.end
 
     respond_to do |format|
       format.html
