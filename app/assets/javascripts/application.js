@@ -17,15 +17,19 @@
 //= require moment
 //= require fullcalendar
 
+var date = new Date();
+date.setDate(date.getDate() - 2);
+
 $(function() {
   $('#calendar').fullCalendar({
     eventSources: ["/events.json"],
-    defaultView: 'basicWeek',
-    /* header: {
-      left: 'basicWeek,month',
-      center: 'title',
-      right: 'today prev,next',
-    }, */
+    defaultView: 'destiny',
+    views: {
+      destiny: {
+        type: 'basicWeek',
+        duration: { days: 7 },
+      }
+    },
     header: {
       left: '',
       center: '',
@@ -34,5 +38,6 @@ $(function() {
     eventOrder: "order",
     height: "auto",
     themeSystem: "bootstrap4",
+    defaultDate: date
   });
 })
