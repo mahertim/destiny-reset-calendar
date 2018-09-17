@@ -17,27 +17,59 @@
 //= require moment
 //= require fullcalendar
 
-var date = new Date();
-date.setDate(date.getDate() - 2);
+width = $(window).width();
+mobile = false
+if (width < 760) {
+  mobile = true
+}
 
-$(function() {
-  $('#calendar').fullCalendar({
-    eventSources: ["/events.json"],
-    defaultView: 'destiny',
-    views: {
-      destiny: {
-        type: 'basicWeek',
-        duration: { days: 7 },
-      }
-    },
-    header: {
-      left: '',
-      center: '',
-      right: '',
-    },
-    eventOrder: "order",
-    height: "auto",
-    themeSystem: "bootstrap4",
-    defaultDate: date
-  });
-})
+if (mobile) {
+  var date = new Date();
+  date.setDate(date.getDate() - 1);
+  $(function() {
+    $('#calendar').fullCalendar({
+      eventSources: ["/events.json"],
+      defaultView: 'destiny',
+      views: {
+        destiny: {
+          type: 'basicWeek',
+          duration: { days: 4 },
+        }
+      },
+      header: {
+        left: '',
+        center: '',
+        right: '',
+      },
+      eventOrder: "order",
+      height: "auto",
+      themeSystem: "bootstrap4",
+      defaultDate: date
+    });
+  })
+}
+else {
+  var date = new Date();
+  date.setDate(date.getDate() - 2);
+  $(function() {
+    $('#calendar').fullCalendar({
+      eventSources: ["/events.json"],
+      defaultView: 'destiny',
+      views: {
+        destiny: {
+          type: 'basicWeek',
+          duration: { days: 7 },
+        }
+      },
+      header: {
+        left: '',
+        center: '',
+        right: '',
+      },
+      eventOrder: "order",
+      height: "auto",
+      themeSystem: "bootstrap4",
+      defaultDate: date
+    });
+  })
+}
